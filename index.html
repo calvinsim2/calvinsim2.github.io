@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Software developer portfolio — ASP.NET Core, Angular, SQL Server, and Azure projects." />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Calvin Sim | Software Developer</title>
+  <style>
+    :root {
+      color-scheme:dark;
+      --bg:#0b1220;
+      --panel:#111d2f;
+      --panel2:#17263c;
+      --ink:#f3f7fd;
+      --muted:#a6b4ca;
+      --line:#283850;
+      --accent:#66e1c6;
+      --accent2:#81aafa;
+      --radius:20px
+    }
+
+    * {
+      box-sizing:border-box
+    } 
+    
+    html {
+      scroll-behavior:smooth
+    } 
+    
+    body {
+      margin:0;
+      background:radial-gradient(circle at 90% 0%,#172b45 0,transparent 32%),
+      radial-gradient(circle at 3% 35%,#11233b 0,transparent 29%), var(--bg);
+      color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      line-height:1.6
+    }
+
+    a { 
+      color:inherit;
+      text-decoration:none
+    } 
+    
+    a:focus-visible {
+      outline:3px solid var(--accent);
+      outline-offset:4px;
+      border-radius:5px
+    } 
+    
+    .wrap {
+      max-width:1080px;
+      margin:0 auto;
+      padding:0 28px
+    } 
+    
+    .topbar {
+      border-bottom:1px solid rgba(166,180,202,.14);
+      background:rgba(11,18,32,.8);
+      backdrop-filter:blur(14px);
+      position:sticky;
+      top:0;
+      z-index:2
+    }
+    
+    .topbar .wrap {
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px
+    } 
+    
+    .brand {
+      font-weight:800;
+      letter-spacing:-.04em;
+      font-size:1.13rem
+    }
+    
+    .brand span {
+      color:var(--accent)
+    } 
+    
+    nav {
+      display:flex;
+      gap:26px
+    } 
+    
+    nav a {
+      font-size:.9rem;
+      color:var(--muted)
+    } 
+    
+    nav a:hover {
+      color:var(--ink)
+    }
+
+    .hero {
+      padding:110px 0 95px;
+      display:grid;
+      grid-template-columns:1.35fr .65fr;
+      align-items:center;
+      gap:55px
+    } 
+    
+    .eyebrow {
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.75rem;
+      font-weight:800;
+      color:var(--accent);
+      margin:0 0 18px
+    } 
+    
+    h1 {
+      font-size:clamp(2.7rem,5.9vw,4.9rem);
+      letter-spacing:-.065em;
+      line-height:1.08;
+      margin:0 0 23px
+    } 
+    
+    h1 .hl {
+      background:linear-gradient(100deg,var(--accent),var(--accent2));
+      background-clip:text;
+      -webkit-background-clip:text;
+      color:transparent
+    } 
+    
+    .lede {
+      font-size:1.1rem;
+      color:var(--muted);
+      max-width:640px;
+      margin:0 0 29px
+    } 
+    
+    .actions {
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap
+    } 
+    
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:9px;padding:12px 19px;
+      border-radius:11px;
+      font-weight:750;
+      font-size:.91rem;
+      transition:transform .15s,background .15s
+    }
+    
+    .btn:hover {
+      transform:translateY(-2px)
+    } 
+    
+    .btn-main {
+      background:var(--accent);
+      color:#08231e
+    }
+    
+    .btn-alt {
+      border:1px solid #496078;
+      background:#142237;
+      color:#f2f6fd
+    }
+
+    .hero-art {
+      height:320px;
+      border:1px solid var(--line);
+      border-radius:27px;
+      background:linear-gradient(145deg,#1f3b58,#0d192a 75%);
+      box-shadow:0 32px 70px #050c18aa;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden
+    } 
+    
+    .hero-art:before, .hero-art:after {
+      content:"";
+      position:absolute;
+      border:1px solid rgba(125,167,211,.14);
+      border-radius:28px;
+      inset:24px;
+      transform:rotate(-13deg)
+    }
+    
+    .hero-art:after {
+      inset:49px;
+      transform:rotate(16deg)
+    } 
+    
+    .terminal {
+      width:75%;
+      padding:15px 15px 20px;
+      background:#0a1321;border:1px solid #39516a;
+      border-radius:13px;
+      box-shadow:0 20px 40px #0309168c;
+      position:relative;
+      z-index:1;
+      transform:rotate(-5deg)
+    }
+    
+    .dots {
+      display:flex;
+      gap:6px;
+      margin-bottom:19px
+    }
+    
+    .dots i {
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#fd7773
+    } 
+    
+    .dots i:nth-child(2) {
+      background:#f2c46a
+    }
+    
+    .dots i:nth-child(3) {
+      background:#6ad9aa
+    }
+    
+    .terminal code {
+      display:block;
+      font:500 .86rem/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;color:#c0cce1;white-space:nowrap
+    }
+    
+    .terminal em{
+      color:#75e4be;
+      font-style:normal
+    }
+    
+    .terminal b {
+      color:#92baff;
+      font-weight:500
+    }
+
+    section {
+      padding:33px 0 55px
+    } 
+    
+    .section-head {
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:15px;
+      margin-bottom:26px
+    } 
+    
+    h2 {
+      font-size:clamp(1.7rem,3vw,2.2rem);
+      letter-spacing:-.044em;
+      line-height:1.2;
+      margin:0
+    } 
+    
+    .sub {
+      color:var(--muted);
+      margin:10px 0 0;
+      max-width:650px
+    }
+    
+    .cards {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px
+    }
+    
+    .card {
+      border:1px solid var(--line);
+      background:linear-gradient(145deg,#16253b,#111c2e);
+      border-radius:var(--radius);
+      padding:27px;
+      display:flex;
+      flex-direction:column;
+      min-height:318px;
+      transition:border-color .18s,transform .18s
+    }
+    
+    .card:hover {
+      border-color:#56718f;
+      transform:translateY(-3px)
+    }
+    
+    .card .top {
+      display:flex;
+      justify-content:space-between;
+      align-items:start;
+      gap:10px
+    
+    }
+    
+    .glyph { 
+      height:52px;
+      width:52px;
+      background:rgba(102,225,198,.1);
+      border:1px solid rgba(102,225,198,.23);
+      border-radius:13px;
+      display:grid;
+      place-items:center;
+      font-size:1.65rem
+    }
+    
+    .status {
+      border:1px solid #3b5268;
+      border-radius:999px;
+      color:#aac7e8;
+      font-size:.67rem;
+      letter-spacing:.03em;
+      padding:5px 9px
+    }
+    
+    h3 {
+      letter-spacing:-.025em;
+      font-size:1.3rem;
+      margin:17px 0 8px
+    }
+    
+    .desc {
+      color:var(--muted);
+      font-size:.92rem;
+      margin:0 0 17px;
+      flex-grow:1
+    }
+    
+    .tags {
+      display:flex;
+      gap:7px;
+      flex-wrap:wrap;
+      margin-bottom:19px
+    }
+    
+    .tag {
+      font-size:.73rem;
+      background:#223650;color:#c5daf4;
+      border-radius:7px;
+      padding:4px 9px
+    }
+    
+    .links {
+      display:flex;
+      flex-wrap:wrap;
+      gap:17px;
+      padding-top:17px;
+      border-top:1px solid var(--line)
+    }
+    
+    .links a {
+      font-size:.85rem;
+      font-weight:750;
+      color:var(--accent)
+    }
+    
+    .links a:hover {
+      text-decoration:underline
+    }
+
+    .skills {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding-top:12px
+    }
+    
+    .skill {
+      background:#15253a;
+      border:1px solid #2a405c;
+      border-radius:999px;
+      padding:9px 15px;
+      color:#d9e9fb;
+      font-size:.88rem
+    } 
+    
+    .aboutbox {
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:#121f33;
+      padding:29px; 
+      color:var(--muted)
+    } 
+    
+    .aboutbox p {
+      margin:0
+    }
+    
+    .aboutbox strong {
+      color:var(--ink)
+    }
+    
+    .contact {
+      margin:35px 0 55px;
+      border-radius:var(--radius);
+      padding:36px;
+      background:linear-gradient(120deg,#153447,#19344b 50%,#152338);
+      border:1px solid #345a6a
+    }
+    
+    .contact h2 {
+      margin-bottom:10px
+    }
+    
+    .contact p {
+      color:#d0e0eb;
+      margin:0 0 23px
+    }
+    
+    .footer {
+      border-top:1px solid var(--line);
+      padding:25px 0 35px;
+      color:var(--muted);
+      font-size:.8rem
+    }
+    
+    .footer .wrap {
+      display:flex;
+      justify-content:space-between;gap:15px;
+      flex-wrap:wrap
+    }
+    
+    .footer a:hover {
+      color:var(--accent)
+    }
+
+    @media(max-width:760px) {
+      .hero{grid-template-columns:1fr;
+        padding:70px 0 50px;
+        gap:37px
+      }
+      
+      .hero-art {
+        height:225px
+      }
+      
+      .terminal {
+        width:70%
+      }
+      
+      .cards {
+        grid-template-columns:1fr
+      }
+      
+      .card {
+        min-height:auto
+      }
+      
+      nav {
+        gap:15px
+      }
+      
+      nav a {
+        font-size:.8rem}
+      }
+      
+      @media(max-width:420px) {
+        .wrap { 
+          padding:0 18px
+        }
+        .topbar .wrap {
+          min-height:68px
+        }
+        .brand{
+          font-size:1rem
+        }
+        nav{
+          gap:10px
+        }
+        .terminal code{
+          font-size:.73rem
+        }
+        .hero-art{
+          height:205px
+        }
+        .contact{
+          padding:25px
+        }
+      }
+    @media(prefers-reduced-motion:reduce) {
+      html{scroll-behavior:auto} .btn,.card {
+        transition:none}
+      }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#home">calvin<span>.</span>dev</a>
+      <nav aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap" id="home">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Software developer · Portfolio</p>
+        <h1>Greetings! I'm Calvin.</h1>
+        <p class="lede">
+          I enjoy coding, and learning software engineering related topics. 
+          Developing web applications are examples of how I apply my skills. 
+          Here are a few projects that I developed utilising C#, ASP.NET Core, Angular, SQL Server, and Azure.
+        </p>
+        <div class="actions">
+          <a class="btn btn-main" href="#projects">Explore projects <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn btn-alt" href="https://github.com/calvinsim2" target="_blank" rel="noopener noreferrer">
+            View GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="terminal">
+          <div class="dots">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+          <code>
+            <em>public class</em> 
+            <b>Developer</b>
+          </code>
+          <code> {</code>
+            <code>&nbsp; Stack = <em>".NET + Angular"</em>;</code>
+            <code>&nbsp; Cloud = <em>"Azure"</em>;</code>
+            <code>&nbsp; Focus = <em>"Build & Learn"</em>;
+            </code>
+          <code>}</code>
+        </div>
+      </div>
+    </div>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2 id="projects-title">Featured projects</h2>
+          <p class="sub">A mix of deployed applications and source-code projects. Each repository contains the implementation details.</p>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="top">
+            <div class="glyph" aria-hidden="true">♟</div>
+            <span class="status">Azure hosted · access restricted</span>
+          </div>
+          <h3>Chess NLP Coach</h3>
+          <p class="desc">An ASP.NET Core MVC chess-analysis application that combines Stockfish engine analysis 
+            with natural-language explanations to help players understand their moves. The live demo requires an account.
+          </p>
+          <div class="tags">
+            <span class="tag">ASP.NET Core</span>
+            <span class="tag">C#</span>
+            <span class="tag">Stockfish</span>
+            <span class="tag">Azure</span>
+            <span class="tag">AI</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/calvinsim2/ChessNLPCoachApp" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+            <a href="https://chessnlpcoach-abc2cuhcgaa4csg2.southeastasia-01.azurewebsites.net/" target="_blank" rel="noopener noreferrer">Live website ↗</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="top">
+            <div class="glyph" aria-hidden="true">🎮</div>
+            <span class="status">Full-stack project</span>
+          </div>
+          <h3>Video Game Online Shop</h3>
+          <p class="desc">An online shopping application with an ASP.NET Core Web API backend and a separate Angular frontend. 
+            Explore both repositories to see the frontend and API code.</p>
+          <div class="tags">
+            <span class="tag">ASP.NET Core Web API</span>
+            <span class="tag">Angular</span>
+            <span class="tag">C#</span>
+            <span class="tag">TypeScript</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/calvinsim2/VideoGameOnlineShop" target="_blank" rel="noopener noreferrer">Backend code ↗</a>
+            <a href="https://github.com/calvinsim2/VideoGameOnlineShopUI" target="_blank" rel="noopener noreferrer">Frontend code ↗</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="top">
+            <div class="glyph" aria-hidden="true">🍽</div>
+            <span class="status">Azure hosted · Web application</span>
+          </div>
+          <h3>FunWithFood</h3>
+          <p class="desc">An ASP.NET Core MVC food-randomizer application. 
+            The source code demonstrates web application development and database-backed functionality.
+          </p>
+          <div class="tags">
+            <span class="tag">ASP.NET Core MVC</span>
+            <span class="tag">C#</span>
+            <span class="tag">Azure</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/calvinsim2/food-randomizer" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+            <a href="https://chessnlpcoach-abc2cuhcgaa4csg2.southeastasia-01.azurewebsites.net/" target="_blank" rel="noopener noreferrer">Live website ↗</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="top">
+            <div class="glyph" aria-hidden="true">⌘</div>
+            <span class="status">More on GitHub</span>
+          </div>
+          <h3>Additional projects</h3>
+          <p class="desc">
+            Explore my GitHub profile for other experiments, practice applications, 
+            and ongoing learning projects covering .NET, SQL, and cloud technologies.
+          </p>
+          <div class="tags">
+            <span class="tag">C#</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">Cloud</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/calvinsim2?tab=repositories" target="_blank" rel="noopener noreferrer">All repositories ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <p class="eyebrow">Tech stack</p>
+      <h2 id="skills-title">Technologies I work with</h2>
+      <div class="skills">
+        <span class="skill">C# / .NET</span>
+        <span class="skill">ASP.NET Core MVC</span>
+        <span class="skill">ASP.NET Core Web API</span>
+        <span class="skill">Angular</span>
+        <span class="skill">TypeScript</span>
+        <span class="skill">SQL Server</span>
+        <span class="skill">Entity Framework Core</span>
+        <span class="skill">Microsoft Azure</span>
+        <span class="skill">Git & GitHub</span>
+        <span class="skill">Docker</span>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <p class="eyebrow">A little about me</p>
+      <h2 id="about-title" style="margin-bottom:22px">About me</h2>
+      <div class="aboutbox">
+        <p>I'm a software developer who enjoys turning ideas into working applications and understanding how systems work under the hood. 
+          My projects span 
+          <strong>backend APIs, full-stack web development, cloud deployment, databases, and AI-assisted applications</strong>. 
+          This portfolio brings together the code and, where available, live demonstrations of what I've built.
+        </p>
+      </div>
+    </section>
+    <section class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Explore my work</h2>
+      <p>Interested in a project? The GitHub repositories have more technical detail and implementation code.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://github.com/calvinsim2" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+        <a class="btn btn-alt" href="#projects">Back to projects ↑</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Calvin Sim</span>
+      <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
